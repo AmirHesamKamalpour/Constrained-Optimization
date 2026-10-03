@@ -29,109 +29,108 @@ p^\star = -1.
 $$
 
 With multiplier $\lambda \ge 0$, the Lagrangian is
-
-$$
+```math
 L(x,\lambda)
 =
 x_1
 +
 \lambda \left(|x_1| + |x_2| - 1\right).
-$$
+```
 
 The dual function is
 
-$$
+```math
 q(\lambda)
 =
 \begin{cases}
 -\infty, & 0 \le \lambda < 1, \\
 -\lambda, & \lambda \ge 1.
 \end{cases}
-$$
+```
 
 Therefore,
 
-$$
+```math
 \lambda^\star = 1,
 \qquad
 d^\star = -1,
-$$
+```
 
 and the duality gap is zero.
 
 If the norm bound is changed from $1$ to $r$, the optimal value function is
 
-$$
+```math
 V_1(r) = -r,
-$$
+```
 
 so its sensitivity is
 
-$$
+```math
 \frac{dV_1}{dr}
 =
 -1
 =
 -\lambda^\star.
-$$
+```
 
 ### Problem 2: Same Norm Constraint with a Box Domain
 
 The second problem adds $|x_1| \le 1$ and $|x_2| \le 1$:
 
-$$
+```math
 \begin{aligned}
 \min_x \quad & x_1 \\
 \text{s.t.} \quad
 & |x_1| + |x_2| \le 1, \\
 & |x_1| \le 1, \qquad |x_2| \le 1.
 \end{aligned}
-$$
+```
 
 At $r=1$, the primal solution is still
 
-$$
+```math
 x^\star = (-1,0),
 \qquad
 p^\star = -1.
-$$
+```
 
 The dual function associated with the $\ell_1$ constraint becomes
 
-$$
+```math
 q(\lambda)
 =
 \begin{cases}
 -1, & 0 \le \lambda \le 1, \\
 -\lambda, & \lambda > 1.
 \end{cases}
-$$
+```
 
 Hence, the optimal $\ell_1$-constraint multiplier is not unique:
 
-$$
+```math
 \lambda^\star \in [0,1].
-$$
+```
 
 The KKT implementation makes the source of this non-uniqueness explicit. At $x_1=-1$, the lower box bound is active and contributes a normal-cone multiplier
 
-$$
+```math
 \nu = 1 - \lambda.
-$$
+```
 
 Thus, every $\lambda \in [0,1]$ can be paired with a non-negative $\nu$ to satisfy stationarity.
 
 For a varying norm radius $r$, the optimal value function is
 
-$$
+```math
 V_2(r)
 =
 -\min(r,1).
-$$
+```
 
 It has a kink at $r=1$:
 
-$$
+```math
 V_2'(1^-)
 =
 -1,
@@ -139,7 +138,7 @@ V_2'(1^-)
 V_2'(1^+)
 =
 0.
-$$
+```
 
 The numerical finite-difference check in `analysis/sensitivity.py` reproduces these one-sided derivatives.
 
@@ -149,18 +148,18 @@ The numerical finite-difference check in `analysis/sensitivity.py` reproduces th
 
 The second study solves
 
-$$
+```math
 \begin{aligned}
 \min_{x \in \mathbb{R}^3} \quad
 & x_1^2 + 2x_2^2 + 3x_3^2 \\
 \text{s.t.} \quad
 & x_1 + x_2 + x_3 = 1.
 \end{aligned}
-$$
+```
 
 The KKT equations give the analytical solution
 
-$$
+```math
 x^\star
 =
 \left(
@@ -168,11 +167,11 @@ x^\star
 \frac{3}{11},
 \frac{2}{11}
 \right),
-$$
+```
 
 with
 
-$$
+```math
 f^\star
 =
 \frac{6}{11}
@@ -182,20 +181,20 @@ f^\star
 \lambda^\star
 =
 -\frac{12}{11}.
-$$
+```
 
 ### Quadratic Penalty Method
 
 The penalty method solves a sequence of unconstrained problems
 
-$$
+```math
 \min_x
 \;
 f(x)
 +
 \frac{\mu_k}{2}
 \left(h(x)-1\right)^2,
-$$
+```
 
 with an increasing penalty parameter $\mu_k$.
 
@@ -203,7 +202,7 @@ with an increasing penalty parameter $\mu_k$.
 
 The augmented Lagrangian is
 
-$$
+```math
 L_\mu(x,\lambda)
 =
 f(x)
@@ -212,18 +211,18 @@ f(x)
 +
 \frac{\mu}{2}
 \left(h(x)-1\right)^2,
-$$
+```
 
 followed by the multiplier update
 
-$$
+```math
 \lambda_{k+1}
 =
 \lambda_k
 +
 \mu_k
 \left(h(x_k)-1\right).
-$$
+```
 
 The implementation increases $\mu$ only when the constraint violation is not decreasing sufficiently.
 
