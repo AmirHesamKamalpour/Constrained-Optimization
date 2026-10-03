@@ -385,4 +385,3 @@ outputs/q2_method_comparison.png
 - Adding the box domain leaves the primal optimum unchanged at $r=1$, but makes the $\ell_1$-constraint multiplier non-unique.
 - The multiplier interval in Q1 is directly connected to the kink in the optimal-value function and its one-sided sensitivities.
 - Both the quadratic penalty method and method of multipliers accurately solve the Q2 equality-constrained quadratic problem.
-- Separating the BFGS inner solver from the outer constrained methods makes the implementation easier to inspect, test, and extend.
